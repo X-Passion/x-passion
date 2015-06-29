@@ -29,4 +29,12 @@ angular.module('xpassion.api', [
         }, {stripTrailingSlashes: false});
     }]
 )
+
+.factory('Comment', ['API', '$resource',
+    function(API, $resource) {
+        return $resource(API.route('comments/:id'), {id: '@id'}, {
+            undelete: {method: 'PUT', url: API.route('comments/undelete/:id')}
+        }, {stripTrailingSlashes: false});
+    }]
+)
 ;
