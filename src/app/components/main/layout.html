@@ -1,26 +1,53 @@
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Accueil</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a ui-sref="index.presentation" ng-class="infos.active == 'presentations' && 'active' || ''">
+                        Présentation
+                    </a>
+                </li>
+                <li><a href="#">Consulter un article</a></li>
+                <li><a href="#">Contactez-nous</a></li>
+                <li><a href="#">Entreprises</a></li>
+                <li><a href="#">Vos commentaires</a></li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="row">
                 <div ui-view="header"></div>
             </div>
-
-            <!-- TODO NavBar -->
-            
+                        
             <div id="main-content" class="row">
                 <div ui-view=""></div>
             </div>
-            
+                        
             <div class="row">
-                <div class="col-md-10 col-md-offset-2 text-center">
-                    <div class="text-center">
-                        <ul class="list-inline small">
-                            <li>Lien</li>
-                            <li>Lien</li>
-                            <li>Lien</li>
-                        </ul>
-                        <br />
-                    </div>
+                <div class="text-center">
+                    <ul class="list-inline small">
+                        <li ng-if="!isLoggedIn()"><a href="" ng-click="loginOpen()">Connexion</a></li>
+                        <li ng-if="isLoggedIn()"><a href="" ng-click="logout()">Déconnexion</a></li>
+                        <li>Lien</li>
+                    </ul>
+                    <br />
                 </div>
             </div>
         </div>
