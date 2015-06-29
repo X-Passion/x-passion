@@ -25,7 +25,11 @@
                         Contactez-nous
                     </a>
                 </li>
-                <li><a href="#">Entreprises</a></li>
+                <li ng-class="infos.active == 'entreprises' && 'active' || ''">
+                    <a ui-sref="index.entreprises">
+                        Entreprises
+                    </a>
+                </li>
                 <li><a href="#">Vos commentaires</a></li>
 
             </ul>

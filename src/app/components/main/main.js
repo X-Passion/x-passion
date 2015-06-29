@@ -45,13 +45,13 @@ angular.module('xpassion.main', [
                 $scope.infos.active = 'contact';
             }]
         })
-        // .state('index.infos-pratiques', {
-        //     url: "infos-pratiques",
-        //     templateUrl: "components/static/infos-pratiques.html",
-        //     controller: ['$scope', function($scope){
-        //         $scope.infos.active = '';
-        //     }]
-        // })
+        .state('index.entreprises', {
+            url: "entreprises",
+            templateUrl: "app/components/static/entreprises.html",
+            controller: ['$scope', function($scope){
+                $scope.infos.active = 'entreprises';
+            }]
+        })
         // .state('index.gallery', {
         //     url: "gallery",
         //     templateUrl: "components/static/gallery.html",
