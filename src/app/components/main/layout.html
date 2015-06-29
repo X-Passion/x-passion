@@ -8,19 +8,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Accueil</a>
+            <a class="navbar-brand" ui-sref="index">Accueil</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>
-                    <a ui-sref="index.presentation" ng-class="infos.active == 'presentations' && 'active' || ''">
+                <li ng-class="infos.active == 'presentation' && 'active' || ''">
+                    <a ui-sref="index.presentation">
                         Présentation
                     </a>
                 </li>
                 <li><a href="#">Consulter un article</a></li>
-                <li><a href="#">Contactez-nous</a></li>
+                <li ng-class="infos.active == 'contact' && 'active' || ''">
+                    <a ui-sref="index.contact">
+                        Contactez-nous
+                    </a>
+                </li>
                 <li><a href="#">Entreprises</a></li>
                 <li><a href="#">Vos commentaires</a></li>
 

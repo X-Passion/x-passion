@@ -38,13 +38,13 @@ angular.module('xpassion.main', [
             templateUrl: "app/components/auth/forgot-password.html",
             controller: 'main.ctrl.forgot_pwd'
         })
-        // .state('index.external-links', {
-        //     url: "liens",
-        //     templateUrl: "components/static/liens.html",
-        //     controller: ['$scope', function($scope){
-        //         $scope.infos.active = '';
-        //     }]
-        // })
+        .state('index.contact', {
+            url: "contact",
+            templateUrl: "app/components/static/contact.html",
+            controller: ['$scope', function($scope){
+                $scope.infos.active = 'contact';
+            }]
+        })
         // .state('index.infos-pratiques', {
         //     url: "infos-pratiques",
         //     templateUrl: "components/static/infos-pratiques.html",
