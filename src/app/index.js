@@ -11,23 +11,26 @@ angular.module('xpassion', [
     'ui.bootstrap',
     'angularFileUpload',
 
+    'xpassion.auth',
+    'xpassion.api',
+    
     'xpassion.main'
 ])
 
-// .factory('http.request.interceptor', 
-//     ['$q', '$location',
-//     function ($q, $location) {
-//         return {
-//             'responseError': function(rejection) {
-//                 // do something on error
-//                 if(rejection.status === 404){
-//                     $location.path('/404');                    
-//                 }
-//                 return $q.reject(rejection);
-//              }
-//          };
-//     }]
-// )
+.factory('http.request.interceptor', 
+    ['$q', '$location',
+    function ($q, $location) {
+        return {
+            'responseError': function(rejection) {
+                // do something on error
+                if(rejection.status === 404){
+                    $location.path('/404');                    
+                }
+                return $q.reject(rejection);
+             }
+         };
+    }]
+)
 
 .config(['$urlRouterProvider',
     function($urlRouterProvider) {
@@ -35,12 +38,12 @@ angular.module('xpassion', [
     }]
 )
 
-// .config(['$httpProvider',
-//     function ($httpProvider) {
-//         $httpProvider.interceptors.push('auth.interceptor');
-//         $httpProvider.interceptors.push('http.request.interceptor');
-//     }]
-// )
+.config(['$httpProvider',
+    function ($httpProvider) {
+        // $httpProvider.interceptors.push('auth.interceptor');
+        $httpProvider.interceptors.push('http.request.interceptor');
+    }]
+)
 
 .directive('ngThumb', ['$window', function($window) {
     var helper = {
@@ -87,19 +90,6 @@ angular.module('xpassion', [
     };
 }])
 
-.filter('civility', function() {
-    return function(text) {
-        if (text == 'Monsieur') {
-            return 'M.';
-        } else if (text == 'Madame') {
-            return 'Mme';
-        } else if (text == 'Mademoiselle') {
-            return 'Mlle';
-        } else {
-            return '';
-        }
-    };
-})
 .filter('nl2br', function(){
       return function(text) {
            return text ? text.replace(/\n/g, '<br/>') : '';

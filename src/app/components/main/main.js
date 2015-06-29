@@ -33,16 +33,11 @@ angular.module('xpassion.main', [
         //     }]
         // })
         
-        // .state('index.login', {
-        //     url: "login",
-        //     templateUrl: "components/common/login.html",
-        //     controller: 'main.ctrl.login'
-        // })
-        // .state('index.forgot-password', {
-        //     url: "forgot-password",
-        //     templateUrl: "components/common/forgot-password.html",
-        //     controller: 'main.ctrl.forgot_pwd'
-        // })
+        .state('index.forgot-password', {
+            url: "forgot-password",
+            templateUrl: "app/components/auth/forgot-password.html",
+            controller: 'main.ctrl.forgot_pwd'
+        })
         // .state('index.external-links', {
         //     url: "liens",
         //     templateUrl: "components/static/liens.html",
@@ -70,7 +65,7 @@ angular.module('xpassion.main', [
         // })
         .state('index.404', {
             url: "404",
-            templateUrl: "components/static/404.html",
+            templateUrl: "app/components/static/404.html",
             controller: ['$scope', '$timeout', '$state', function($scope, $timeout, $state) {
                 $scope.infos.active = '';
                 // $timeout(function() {
@@ -82,40 +77,40 @@ angular.module('xpassion.main', [
 }])
 
 .controller('main.ctrl.base',
-    ['$scope', '$stateParams', /*'AuthService',*/ '$state', '$modal', 
-    function($scope, $stateParams, /*AuthService,*/ $state, $modal) {
+    ['$scope', '$stateParams', 'AuthService', '$state', '$modal', 
+    function($scope, $stateParams, AuthService, $state, $modal) {
         $scope.infos = {
             active: 'index',
-            // user: AuthService.getUser()
+            user: AuthService.getUser()
         };
-        // $scope.isLoggedIn = function() {
-        //     return AuthService.isAuthenticated();
-        // };
-        // $scope.logout = function() {
-        //     $scope.infos.user = null;
-        //     AuthService.logout();
-        //     $state.go('index');
-        // };
+        $scope.isLoggedIn = function() {
+            return AuthService.isAuthenticated();
+        };
+        $scope.logout = function() {
+            $scope.infos.user = null;
+            AuthService.logout();
+            $state.go('index');
+        };
 
 
-        // $scope.loginOpen = function(size) {
-        //     var modalInstance = $modal.open({
-        //         templateUrl: "components/common/login.html",
-        //         controller: 'main.ctrl.login',
-        //         size: size
-        //     });
+        $scope.loginOpen = function(size) {
+            var modalInstance = $modal.open({
+                templateUrl: "app/components/auth/login.html",
+                controller: 'main.ctrl.login',
+                size: size
+            });
 
-        //     modalInstance.result.then(function (user) {
-        //         $scope.infos.user = user;
-        //     });
-        // };
+            modalInstance.result.then(function (user) {
+                $scope.infos.user = user;
+            });
+        };
     }]
 )
 
 .controller(
     'main.ctrl.header',
-    ['$scope', /*'AuthService', */
-    function($scope/*, AuthService*/) {
+    ['$scope', 'AuthService', 
+    function($scope, AuthService) {
         //
     }]
 )
@@ -127,63 +122,63 @@ angular.module('xpassion.main', [
     }]
 )
 
-// .controller('main.ctrl.login', 
-//     ['$scope', 'AuthService', '$modalInstance', '$state', '$timeout', 
-//     function($scope, AuthService, $modalInstance, $state, $timeout){
-//         $scope.login = {
-//             username: '',
-//             password: ''
-//         };
+.controller('main.ctrl.login', 
+    ['$scope', 'AuthService', '$modalInstance', '$state', '$timeout', 
+    function($scope, AuthService, $modalInstance, $state, $timeout){
+        $scope.login = {
+            username: '',
+            password: ''
+        };
 
-//         $timeout(function () {
-//             document.getElementById("usernameInput").focus();
-//         }, 300);
+        $timeout(function () {
+            document.getElementById("usernameInput").focus();
+        }, 300);
 
-//         $scope.alerts = [];
+        $scope.alerts = [];
 
-//         $scope.closeAlert = function(index) {
-//             $scope.alerts.splice(index, 1);
-//         };
+        $scope.closeAlert = function(index) {
+            $scope.alerts.splice(index, 1);
+        };
 
-//         $scope.connexion = function (login) {
-//             $scope.loginError = false;
-//             $scope.inLogin = true;
-//             AuthService.login(login).then(
-//                 function(user) {
-//                     $scope.login = {username: '', password: ''};
-//                     //$scope.infos.user = AuthService.getUser();
-//                     $scope.inLogin = false;
-//                     $modalInstance.close(user);
-//                 }, function(error) {
-//                     $scope.loginError = true;
-//                     $scope.alerts.push({type: 'danger', msg: 'Echec de l\'authentification.'});
-//                     $scope.login.password = '';
-//                     $scope.inLogin = false;
-//                 }
-//             );
-//         };
+        $scope.connexion = function (login) {
+            $scope.loginError = false;
+            $scope.inLogin = true;
+            AuthService.login(login).then(
+                function(user) {
+                    $scope.login = {username: '', password: ''};
+                    //$scope.infos.user = AuthService.getUser();
+                    $scope.inLogin = false;
+                    $modalInstance.close(user);
+                }, function(error) {
+                    $scope.loginError = true;
+                    $scope.alerts.push({type: 'danger', msg: 'Echec de l\'authentification.'});
+                    $scope.login.password = '';
+                    $scope.inLogin = false;
+                }
+            );
+        };
 
-//         $scope.cancel = function(dest) {
-//             $modalInstance.dismiss('cancel');
-//             if (dest == 'forgot') {
-//                 $state.go('index.forgot-password');
-//             }
-//         }
-//     }]
-// )
+        $scope.cancel = function(dest) {
+            $modalInstance.dismiss('cancel');
+            if (dest == 'forgot') {
+                $state.go('index.forgot-password');
+            }
+        }
+    }]
+)
 
-// .controller('main.ctrl.forgot_pwd',
-//     ['$scope', 'User', 
-//     function($scope, User) {
-//         $scope.infos.active = '';
+.controller('main.ctrl.forgot_pwd',
+    ['$scope', 'User', 
+    function($scope, User) {
+        $scope.infos.active = '';
 
-//         $scope.generatePwd = function() {
-//             User.forgot_password({email: $scope.uemail}).$promise.then(function(res) {
-//                 console.log(res);
-//             }, function(error) {
-//                 console.log(error);
-//             });
-//         };
-//     }]
-// )
+        $scope.generatePwd = function() {
+            User.forgot_password({email: $scope.uemail}).$promise.then(function(res) {
+                console.log(res);
+            }, function(error) {
+                console.log(error);
+            });
+        };
+    }]
+)
 ;

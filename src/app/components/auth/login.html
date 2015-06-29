@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h3 class="modal-title">Identification</h3>
+</div>
+<div class="modal-body">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    <form class="form-horizontal" ng-submit="connexion(login)">
+        <div class="form-group">
+            <label for="usernameInput" class="control-label col-sm-3">Identifiant</label>
+            <div class="col-sm-9">
+                <input type="text" id="usernameInput" class="form-control" ng-model="login.username" tabindex="0" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput" class="control-label col-sm-3">Mot de passe</label>
+            <div class="col-sm-9">
+                <input type="password" id="passwordInput" class="form-control" ng-model="login.password" />
+            </div>
+        </div>
+        <input type="submit" value="Valider" ng-show="false" />
+    </form>
+    <a href="" ng-click="cancel('forgot')" tooltip="Demander un nouveau mot de passe">Mot de passe oublié...</a>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="connexion(login)">Valider</button>
+    <button class="btn btn-default" ng-click="cancel()">Annuler</button>
+</div>
+<script type="text/javascript">
+    $('#usernameInput').focus();
+</script>
