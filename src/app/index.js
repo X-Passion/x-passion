@@ -14,7 +14,8 @@ angular.module('xpassion', [
     'xpassion.auth',
     'xpassion.api',
     
-    'xpassion.main'
+    'xpassion.main',
+    'xpassion.comment'
 ])
 
 .factory('http.request.interceptor', 

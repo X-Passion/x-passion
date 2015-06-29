@@ -30,7 +30,11 @@
                         Entreprises
                     </a>
                 </li>
-                <li><a href="#">Vos commentaires</a></li>
+                <li ng-class="infos.active == 'comments' && 'active' || ''">
+                    <a ui-sref="index.comments.list">
+                        Vos commentaires
+                    </a>
+                </li>
                 <li ng-class="infos.active == 'ecrire' && 'active' || ''">
                     <a ui-sref="index.ecrire">
                         Écrire dans X-Passion
