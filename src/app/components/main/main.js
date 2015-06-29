@@ -25,13 +25,13 @@ angular.module('xpassion.main', [
                 }
             }
         })
-        // .state('index.presentation', {
-        //     url: "presentation",
-        //     templateUrl: "components/static/presentation.html",
-        //     controller: ['$scope', function($scope) {
-        //         $scope.infos.active = 'presentation';
-        //     }]
-        // })
+        .state('index.presentation', {
+            url: "presentation",
+            templateUrl: "app/components/static/presentation.html",
+            controller: ['$scope', function($scope) {
+                $scope.infos.active = 'presentation';
+            }]
+        })
         
         .state('index.forgot-password', {
             url: "forgot-password",
