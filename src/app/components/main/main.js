@@ -52,6 +52,13 @@ angular.module('xpassion.main', [
                 $scope.infos.active = 'entreprises';
             }]
         })
+        .state('index.ecrire', {
+            url: "ecrire",
+            templateUrl: "app/components/static/ecrire.html",
+            controller: ['$scope', function($scope){
+                $scope.infos.active = 'ecrire';
+            }]
+        })
         // .state('index.gallery', {
         //     url: "gallery",
         //     templateUrl: "components/static/gallery.html",
