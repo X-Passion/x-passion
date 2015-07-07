@@ -1,0 +1,14 @@
+<div class="col-sm-12">
+    <h2 class="text-center">Actualités</h2>
+
+    <nav>
+        <ul class="pager">
+            <li class="previous" ng-class="(p.offset + p.limit >= p.total()) && 'disabled'"><a ng-click="older()"><span aria-hidden="true">&larr;</span> Plus ancien</a></li>
+            <li class="next" ng-class="p.offset == 0 && 'disabled'"><a ng-click="newer()">Plus récent <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+    <div>
+        <xpassion:news news="news" admin="isLoggedIn()" ng-repeat="news in news_list | limitTo:p.limit:p.offset | orderBy:'date':true"></xpassion:news>
+    </div>
+</div>

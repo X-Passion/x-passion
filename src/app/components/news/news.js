@@ -13,16 +13,47 @@ angular.module('xpassion.news', [])
                 $scope.infos.active = 'news';
             }]
         })
+            .state('index.news.list', {
+                url: "/list",
+                templateUrl: "app/components/news/list.html",
+                controller: 'news.ctrl.list'
+            })
             .state('index.news.add', {
                 url: "/add",
                 templateUrl: "app/components/news/add.html",
-                controller: 'news.ctrl.add'
+                controller: 'news.ctrl.add',
+                resolve: {
+                    news_list: ['News', function(News) {
+                        return News.query();
+                    }]
+                }
             })
     ;
 }])
 
+.controller('news.ctrl.list', 
+    ['$scope', 'news_list', 
+    function($scope, news_list) {
+        $scope.news_list = news_list;
+        $scope.total = news_list.length;
+        $scope.p = {
+            total: function() {return news_list.length;},
+            limit: 1,
+            offset: 0
+        };
+
+        $scope.newer = function() {
+            $scope.p.offset -= $scope.p.limit;
+        };
+
+        $scope.older = function() {
+            $scope.p.offset += $scope.p.limit;
+        }
+    }]
+)
+
 .controller('news.ctrl.add', 
-    ['$scope, News', 
+    ['$scope', 'News', 
     function($scope, News) {
         $scope.news = new News();
     
