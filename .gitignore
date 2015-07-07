@@ -3,4 +3,6 @@ bower_components/
 .sass-cache/
 .tmp/
 dist/
-xpassion.sublime-workspace
+x-passion.sublime-workspace
+x-passion.sublime-project
+couvertures/

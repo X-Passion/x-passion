@@ -10,6 +10,11 @@ angular.module('xpassion.main', [
     $stateProvider
         .state('index', {
             url: "/",
+            resolve: {
+                news_list: ['News', function(News) {
+                    return News.query();
+                }]
+            },
             views: {
                 '@': {
                     templateUrl: "app/components/main/layout.html",
@@ -17,7 +22,8 @@ angular.module('xpassion.main', [
                 },
                 'header@index': {
                     templateUrl: "app/components/main/header.html",
-                    controller: 'main.ctrl.header'
+                    controller: 'main.ctrl.header',
+
                 },
                 '@index': {
                     templateUrl: "app/components/main/home.html",
@@ -123,9 +129,10 @@ angular.module('xpassion.main', [
 )
 
 .controller('main.ctrl.home', 
-    ['$scope', '$state',
-    function($scope, $state) {
+    ['$scope', '$state', 'news_list', 
+    function($scope, $state, news_list) {
         $scope.infos.active = '';
+        $scope.news_list = news_list;
     }]
 )
 

@@ -37,4 +37,13 @@ angular.module('xpassion.api', [
         }, {stripTrailingSlashes: false});
     }]
 )
+
+.factory('News', ['API', '$resource',
+    function(API, $resource) {
+        return $resource(API.route('news/:id'), {id: '@id'}, {
+            update: {method: 'PUT', url: API.route('news/:id')},
+            undelete: {method: 'PUT', url: API.route('news/undelete/:id')}
+        }, {stripTrailingSlashes: false});
+    }]
+)
 ;
