@@ -16,17 +16,17 @@ angular.module('xpassion.news', [])
             .state('index.news.list', {
                 url: "/list",
                 templateUrl: "app/components/news/list.html",
-                controller: 'news.ctrl.list'
-            })
-            .state('index.news.add', {
-                url: "/add",
-                templateUrl: "app/components/news/add.html",
-                controller: 'news.ctrl.add',
+                controller: 'news.ctrl.list',
                 resolve: {
                     news_list: ['News', function(News) {
                         return News.query();
                     }]
                 }
+            })
+            .state('index.news.add', {
+                url: "/add",
+                templateUrl: "app/components/news/add.html",
+                controller: 'news.ctrl.add'
             })
     ;
 }])
@@ -48,6 +48,10 @@ angular.module('xpassion.news', [])
 
         $scope.older = function() {
             $scope.p.offset += $scope.p.limit;
+        };
+
+        $scope.filterNewsAdmin = function(o) {
+            return !o.deleted || $scope.isLoggedIn();
         }
     }]
 )

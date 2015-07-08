@@ -16,7 +16,7 @@
         <h3>Actualités</h3>
 
         <div class="col-sm-10 col-sm-offset-1">
-            <xpassion:news news="news" admin="isLoggedIn()" ng-repeat="news in news_list | orderBy:'date':true | limitTo:10"></xpassion:news>
+            <xpassion:news news="news" ng-repeat="news in news_list | filter:!'deleted' | orderBy:'date':true | limitTo:10"></xpassion:news>
             <a ui-sref="index.news.list" ng-if="news_list.length > 10" class="pull-right">Voir les actualités plus anciennes...</a>
         </div>
     </div>

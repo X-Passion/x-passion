@@ -1,6 +1,9 @@
 <div class="col-sm-12">
     <h2 class="text-center">Actualités</h2>
 
+    <a class="btn btn-success pull-right" ui-sref="index.news.add">Ajouter une actualité</a>
+    <br /><br />
+
     <nav>
         <ul class="pager">
             <li class="previous" ng-class="(p.offset + p.limit >= p.total()) && 'disabled'"><a ng-click="older()"><span aria-hidden="true">&larr;</span> Plus ancien</a></li>
@@ -9,6 +12,6 @@
     </nav>
 
     <div>
-        <xpassion:news news="news" admin="isLoggedIn()" ng-repeat="news in news_list | limitTo:p.limit:p.offset | orderBy:'date':true"></xpassion:news>
+        <xpassion:news news="news" admin="isLoggedIn()" ng-repeat="news in news_list | filter:filterNewsAdmin | limitTo:p.limit:p.offset | orderBy:'date':true"></xpassion:news>
     </div>
 </div>
