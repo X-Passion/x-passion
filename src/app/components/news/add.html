@@ -60,5 +60,9 @@
         </div>
     </form>
 
+    <div ng-if="news.title != null && news.message != null" class="col-sm-10 col-sm-offset-2">
+        <h4>Aperçu</h4>
+        <xpassion:news news="news"></xpassion:news>
+    </div>
     
 </div>

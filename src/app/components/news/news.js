@@ -57,6 +57,8 @@ angular.module('xpassion.news', [])
     function($scope, News, $stateParams, FileUploader, API, AuthService, $state) {
         $scope.news = new News();
         $scope.news.image = null;
+        $scope.news.author = $scope.infos.user;
+        $scope.news.date = new Date();
 
         $scope.add = function(n) {
             News.save(n).$promise.then(function(nr) {
