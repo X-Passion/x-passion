@@ -110,7 +110,7 @@ angular.module('xpassion.main', [
             var modalInstance = $modal.open({
                 templateUrl: "app/components/auth/login.html",
                 controller: 'main.ctrl.login',
-                size: size
+                animation: false
             });
 
             modalInstance.result.then(function (user) {
