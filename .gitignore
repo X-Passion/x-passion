@@ -5,4 +5,6 @@ bower_components/
 dist/
 x-passion.sublime-workspace
 x-passion.sublime-project
+couvertures/*
+images/news/*
 couvertures/

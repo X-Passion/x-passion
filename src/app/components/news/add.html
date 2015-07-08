@@ -1,4 +1,64 @@
 <div class="col-sm-12">
     <h2 class="text-center">Ajouter une actualité</h2>
 
+    <form class="form-horizontal" ng-submit="addImage()" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="nimage">Image <em>(opt.)</em></label>
+            <div class="col-sm-10" ng-if="uploadSuccess">
+                <p class="form-control-static">Image ajoutée avec succès.</p>
+            </div>
+            <div class="col-sm-10" ng-if="!uploadSuccess">
+                <input type="file" id="nimage" class="form-control" nv-file-select uploader="uploader">
+                <ul>
+                    <li ng-repeat="item in uploader.queue">
+                        <ol class="list-inline">
+                            <li><strong>{{ item.file.name }}</strong></li>
+                            <li>({{ item.file.size/1024 | number:2 }} kB)</li>
+                            <li>
+                                <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                </button>
+                            </li>
+                        </ol>
+                        <div ng-thumb="{ file: item._file, height: 100 }"></div>
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <form class="form-horizontal" ng-submit="add(news)">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="ntitle">Titre</label>
+            <div class="col-sm-10">
+                <input type="text" id="ntitle" class="form-control" ng-model="news.title" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="nmessage">Message</label>
+            <div class="col-sm-10">
+                <textarea id="nmessage" class="form-control" ng-model="news.message"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <input type="submit" value="Valider" class="btn btn-success" />
+            </div>
+        </div>
+    </form>
+
+    
 </div>

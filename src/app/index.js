@@ -42,7 +42,7 @@ angular.module('xpassion', [
 
 .config(['$httpProvider',
     function ($httpProvider) {
-        // $httpProvider.interceptors.push('auth.interceptor');
+        $httpProvider.interceptors.push('auth.interceptor');
         $httpProvider.interceptors.push('http.request.interceptor');
     }]
 )

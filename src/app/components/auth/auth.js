@@ -57,7 +57,7 @@ angular.module('xpassion.auth', [
                 config.params = config.params || {};
                 // to improve: necessary for ui.bootstrap ; and the token is useless for static files
                 if (AuthService.isAuthenticated() && /api\//.test(config.url)) {
-                    config.headers["_token"] = AuthService.getToken();
+                    config.headers["X-Token"] = AuthService.getToken();
                 }
                 return config || $q.when(config);
             },
