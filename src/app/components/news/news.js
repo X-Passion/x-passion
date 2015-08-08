@@ -38,7 +38,7 @@ angular.module('xpassion.news', [])
         $scope.total = news_list.length;
         $scope.p = {
             total: function() {return news_list.length;},
-            limit: 2,
+            limit: 10,
             offset: 0
         };
 
@@ -52,7 +52,7 @@ angular.module('xpassion.news', [])
 
         $scope.filterNewsAdmin = function(o) {
             return !o.deleted || $scope.isLoggedIn();
-        }
+        };
     }]
 )
 

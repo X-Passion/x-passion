@@ -19,7 +19,11 @@
                         Présentation
                     </a>
                 </li>
-                <li><a href="#">Consulter un article</a></li>
+                <li ng-class="infos.active == 'issues' && 'active' || ''">
+                    <a ui-sref="index.issues.list">
+                        Liste des numéros
+                    </a>
+                </li>
                 <li ng-class="infos.active == 'contact' && 'active' || ''">
                     <a ui-sref="index.contact">
                         Contactez-nous

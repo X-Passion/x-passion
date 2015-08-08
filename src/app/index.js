@@ -16,7 +16,8 @@ angular.module('xpassion', [
     
     'xpassion.main',
     'xpassion.comment',
-    'xpassion.news'
+    'xpassion.news',
+    'xpassion.issue', 
 ])
 
 .factory('http.request.interceptor', 
