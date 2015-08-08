@@ -20,8 +20,9 @@ angular.module('xpassion.api', [
 
 .factory('Comment', ['API', '$resource',
     function(API, $resource) {
-        return $resource(API.route('comments/:id'), {id: '@id'}, {
-            undelete: {method: 'PUT', url: API.route('comments/undelete/:id')}
+        return $resource(API.route('comments/:id/'), {id: '@id'}, {
+            sremove: {method: 'PUT', url: API.route('comments/:id/remove/')},
+            restore: {method: 'PUT', url: API.route('comments/:id/restore/')},
         }, {stripTrailingSlashes: false});
     }]
 )

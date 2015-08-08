@@ -3,7 +3,7 @@
         {{ comment.message }}
     </div>
     <div class="panel-footer">
-        <em>{{ comment.name && comment.name + ' • ' }}{{ comment.created | date:'EEE dd MMM yyyy, HH:mm' }} {{ comment.deleted && '(supprimé)' || '' }}</em>
+        <em>{{ comment.name && comment.name + ' • ' }}{{ comment.date | date:'EEE dd MMM yyyy, HH:mm' }} {{ comment.deleted && '(supprimé)' || '' }}</em>
         <div class="small pull-right" ng-if="admin">
             <a class="btn btn-danger btn-xs" ng-click="trash(comment)" ng-if="!comment.deleted">
                 <span class="glyphicon glyphicon-trash"></span> Supprimer

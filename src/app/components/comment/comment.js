@@ -3,7 +3,6 @@
 angular.module('xpassion.comment', [])
 
 .config(['$stateProvider', '$urlMatcherFactoryProvider', function($stateProvider, $urlMatcherFactoryProvider) {
-    //$urlMatcherFactoryProvider.strictMode(false);
     $stateProvider
         .state('index.comments', {
             url: "comments",
@@ -68,13 +67,13 @@ angular.module('xpassion.comment', [])
         controller: ['$scope', 'Comment', function($scope, Comment) {
             $scope.trash = function(c) {
                 c.deleted = true;
-                c.$delete().then(function(cr) {
+                c.$sremove().then(function(cr) {
                     //
                 });
             };
             $scope.untrash = function(c) {
                 c.deleted = false;
-                Comment.undelete({id: c.id});
+                c.$restore();
             };
         }]
     };
