@@ -17,7 +17,7 @@
     "angular-loader": "*",
     "html5-boilerplate": "~4.3.0",
     "ngstorage": "*",
-    "angular-file-upload": "*",
+    "angular-file-upload": "~1.1.x",
     "Bootflat": "2.0.4"
   },
   "devDependencies": {

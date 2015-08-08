@@ -1,9 +1,10 @@
 <div class="col-sm-12">
     <h2 class="text-center">Ajouter une actualité</h2>
 
-    <form class="form-horizontal" ng-submit="addImage()" enctype="multipart/form-data">
+    <form class="form-horizontal" ng-submit="addImage()" enctype="multipart/form-data" ng-if="can_add_image">
+        <h4 class="text-center">Ajouter une image (optionnel)</h4>
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="nimage">Image <em>(opt.)</em></label>
+            <label class="col-sm-2 control-label" for="nimage">Image</label>
             <div class="col-sm-10" ng-if="uploadSuccess">
                 <p class="form-control-static">Image ajoutée avec succès.</p>
             </div>
@@ -38,9 +39,15 @@
                 </ul>
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <a class="btn btn-warning" ui-sref="index.news.list">Ne pas ajouter d'image</a>
+            </div>
+        </div>
     </form>
 
-    <form class="form-horizontal" ng-submit="add(news)">
+    <form class="form-horizontal" ng-submit="add(news)" ng-if="!can_add_image">
+        <h4 class="text-center">Contenu de l'actualité</h4>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="ntitle">Titre</label>
             <div class="col-sm-10">
@@ -55,14 +62,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-                <input type="submit" value="Valider" class="btn btn-success" />
+                <input type="submit" value="Continuer" class="btn btn-success" />
             </div>
         </div>
     </form>
-
-    <div ng-if="news.title != null && news.message != null" class="col-sm-10 col-sm-offset-2">
-        <h4>Aperçu</h4>
-        <xpassion:news news="news"></xpassion:news>
-    </div>
-    
 </div>

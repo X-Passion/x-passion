@@ -38,7 +38,7 @@ angular.module('xpassion.news', [])
         $scope.total = news_list.length;
         $scope.p = {
             total: function() {return news_list.length;},
-            limit: 10,
+            limit: 2,
             offset: 0
         };
 
@@ -59,6 +59,7 @@ angular.module('xpassion.news', [])
 .controller('news.ctrl.add', 
     ['$scope', 'News', '$stateParams', 'FileUploader', 'API', 'AuthService', '$state', 
     function($scope, News, $stateParams, FileUploader, API, AuthService, $state) {
+        $scope.can_add_image = false;
         $scope.news = new News();
         $scope.news.image = null;
         $scope.news.author = $scope.infos.user;
@@ -66,7 +67,9 @@ angular.module('xpassion.news', [])
 
         $scope.add = function(n) {
             News.save(n).$promise.then(function(nr) {
-                $state.go('index.news.list');
+                $scope.news = nr;
+                $scope.can_add_image = true;
+                $scope.uploader.url = API.route('news/' + nr.id + '/upload_image/')
             }, function(e) {
                 console.log(e);
             });
@@ -74,8 +77,10 @@ angular.module('xpassion.news', [])
 
         $scope.uploadSucces = false;
         $scope.uploader = new FileUploader({
-            url: API.route('news/poster'),
-            headers: { 'X-Token': AuthService.getToken() },
+            url: '/',
+            headers: { 'Authorization': "JWT " + AuthService.getToken() },
+            method: 'PUT',
+            alias: 'image', 
             queueLimit: 1
         });
         $scope.uploader.filters.push({
@@ -89,9 +94,10 @@ angular.module('xpassion.news', [])
             console.log($scope.news);
             $scope.uploadSuccess = true;
             $scope.uploader.clearQueue();
+            $state.go('index.news.list');
         };
         $scope.uploader.onSuccessItem = function(item, response, status, headers) {
-            $scope.news.image = response.filename;
+            // $scope.news.image = response.filename;
         };
     }]
 )
@@ -107,13 +113,15 @@ angular.module('xpassion.news', [])
         controller: ['$scope', 'News', function($scope, News) {
             $scope.trash = function(n) {
                 n.deleted = true;
-                n.$delete().then(function(nr) {
-                    //
+                n.$sremove().then(function(nr) {
+                    // console.log(nr);
                 });
             };
             $scope.untrash = function(n) {
                 n.deleted = false;
-                News.undelete({id: n.id});
+                n.$restore().then(function(nr) {
+                    // console.log(nr);
+                });
             };
         }]
     };
