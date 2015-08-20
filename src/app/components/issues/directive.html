@@ -1,12 +1,12 @@
-<div class="col-md-2 col-sm-3 col-xs-6">
+<div class="col-sm-3 col-xs-6">
     <div class="thumbnail">
         <a ui-sref="index.issues.details({id: issue.id})">
-            <img ng-src="{{ issue.front_cover }}" class="img-rounded" />
+            <img ng-src="{{ issue.front_cover.file }}" class="img-rounded" />
         </a>
         <div class="caption text-center">
             <h6>Numéro {{ issue.number }}</h6>
             <p><small><em>paru le {{ issue.date | date:"dd MMMM yyyy" }}</em></small></p>
-            <h4>{{ themes_str(issue) }}</h4>
+            <h4>{{ issue.theme }}</h4>
             
             <span ng-if="admin">
                 <a class="btn btn-sm btn-danger" ng-click="trash(issue)" ng-if="issue.published"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>

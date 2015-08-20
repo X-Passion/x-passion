@@ -39,7 +39,6 @@ angular.module('xpassion.issue', [])
     ['$scope', 'issues_list', 
     function($scope, issues_list) {
         $scope.issues_list = issues_list;
-        console.log($scope.issues_list);
         $scope.total = issues_list.length;
         $scope.p = {
             total: function() { return issues_list.length; },
@@ -77,12 +76,6 @@ angular.module('xpassion.issue', [])
         },
         templateUrl: 'app/components/issues/directive.html',
         controller: ['$scope', 'Issue', function($scope, Issue) {
-            $scope.themes_str = function(issue) {
-                return _.map(issue.themes, function(t) {
-                    return t.name;
-                }).join(' - ');
-            };
-
             $scope.trash = function(i) {
                 i.published = false;
                 i.$sremove().then(function(ir) {
