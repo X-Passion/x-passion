@@ -59,17 +59,21 @@ angular.module('xpassion.news', [])
 .controller('news.ctrl.add', 
     ['$scope', 'News', '$stateParams', 'FileUploader', 'API', 'AuthService', '$state', 
     function($scope, News, $stateParams, FileUploader, API, AuthService, $state) {
-        $scope.can_add_image = false;
         $scope.news = new News();
         $scope.news.image = null;
-        $scope.news.author = $scope.infos.user;
         $scope.news.date = new Date();
+        $scope.image_visibility = 'platal';
+        $scope.image_caption = '';
+        $scope.image_path = '';
+        $scope.alert_image = false;
 
         $scope.add = function(n) {
+            if ($scope.uploader.queue.length > 0) {
+                $scope.alert_image = true;
+                return
+            }
             News.save(n).$promise.then(function(nr) {
-                $scope.news = nr;
-                $scope.can_add_image = true;
-                $scope.uploader.url = API.route('news/' + nr.id + '/upload_image/')
+                // $state.go('index.news.list');
             }, function(e) {
                 console.log(e);
             });
@@ -77,10 +81,10 @@ angular.module('xpassion.news', [])
 
         $scope.uploadSucces = false;
         $scope.uploader = new FileUploader({
-            url: '/',
+            url: API.route('images/'),
             headers: { 'Authorization': "JWT " + AuthService.getToken() },
-            method: 'PUT',
-            alias: 'image', 
+            method: 'POST',
+            alias: 'file', 
             queueLimit: 1
         });
         $scope.uploader.filters.push({
@@ -90,14 +94,21 @@ angular.module('xpassion.news', [])
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
+        $scope.uploader.onBeforeUploadItem = function(item) {
+            item.formData = [
+                {'caption': $scope.image_caption},
+                {'platal_only': ($scope.image_visibility == 'platal')},
+                {'type': 'news'},
+            ];
+        };
         $scope.uploader.onCompleteAll = function() {
             console.log($scope.news);
             $scope.uploadSuccess = true;
             $scope.uploader.clearQueue();
-            $state.go('index.news.list');
         };
         $scope.uploader.onSuccessItem = function(item, response, status, headers) {
-            // $scope.news.image = response.filename;
+            $scope.news.image = response.id;
+            $scope.image_path = response.file;
         };
     }]
 )

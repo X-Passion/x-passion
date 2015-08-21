@@ -1,7 +1,7 @@
 <div class="col-sm-12">
     <h2 class="text-center">Ajouter une actualité</h2>
 
-    <form class="form-horizontal" ng-submit="addImage()" enctype="multipart/form-data" ng-if="can_add_image">
+    <form class="form-horizontal" ng-submit="addImage()" enctype="multipart/form-data">
         <h4 class="text-center">Ajouter une image (optionnel)</h4>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="nimage">Image</label>
@@ -10,6 +10,27 @@
             </div>
             <div class="col-sm-10" ng-if="!uploadSuccess">
                 <input type="file" id="nimage" class="form-control" nv-file-select uploader="uploader">
+            </div>
+        </div>
+        <div class="form-group" ng-show="uploader.queue.length > 0">
+            <label class="col-sm-2 control-label" for="ncaption">Légende <em>(opt.)</em></label>
+            <div class="col-sm-10">
+                <input type="text" id="ncaption" class="form-control" ng-model="image_caption" />
+            </div>
+        </div>
+        <div class="form-group" ng-show="uploader.queue.length > 0">
+            <label class="control-label col-sm-2">Visibilité</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="visibility" id="nvisibility_platal" value="platal" ng-model="image_visibility" />Seulement sur le Plâtal
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="visibility" id="nvisibility_ext" value="ext" ng-model="image_visibility" />À l'extérieur
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
                 <ul>
                     <li ng-repeat="item in uploader.queue">
                         <ol class="list-inline">
@@ -39,14 +60,10 @@
                 </ul>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-10 col-sm-offset-2">
-                <a class="btn btn-warning" ui-sref="index.news.list">Ne pas ajouter d'image</a>
-            </div>
-        </div>
+        
     </form>
 
-    <form class="form-horizontal" ng-submit="add(news)" ng-if="!can_add_image">
+    <form class="form-horizontal" ng-submit="add(news)">
         <h4 class="text-center">Contenu de l'actualité</h4>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="ntitle">Titre</label>
@@ -62,7 +79,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-                <input type="submit" value="Continuer" class="btn btn-success" />
+                <input type="submit" value="Valider" class="btn btn-success" />
+                <span class="help-block" ng-if="alert_image"><em class="text-danger">Il faut d'abord valider l'envoi de l'image, ou la supprimer.</em></span>
             </div>
         </div>
     </form>

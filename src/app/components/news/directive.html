@@ -1,5 +1,5 @@
 <div ng-if="news.image != null" class="col-sm-2">
-    <img ng-src="{{ news.image }}" class="img-responsive" />
+    <img ng-src="{{ news.image.file }}" class="img-responsive" />
 </div>
 <div class="col-sm-10" ng-class="news.image == null && 'col-sm-offset-2' || ''">
     <h4>
