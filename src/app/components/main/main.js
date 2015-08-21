@@ -131,7 +131,7 @@ angular.module('xpassion.main', [
 .controller('main.ctrl.home', 
     ['$scope', '$state', 'news_list', 
     function($scope, $state, news_list) {
-        $scope.infos.active = '';
+        $scope.infos.active = 'home';
         $scope.news_list = news_list;
     }]
 )

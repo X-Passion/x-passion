@@ -60,11 +60,12 @@ angular.module('xpassion.news', [])
     ['$scope', 'News', '$stateParams', 'FileUploader', 'API', 'AuthService', '$state', 
     function($scope, News, $stateParams, FileUploader, API, AuthService, $state) {
         $scope.news = new News();
-        $scope.news.image = null;
-        $scope.news.date = new Date();
-        $scope.image_visibility = 'platal';
-        $scope.image_caption = '';
-        $scope.image_path = '';
+        $scope.news.image_id = null;
+        $scope.image = {
+            visibility: 'platal',
+            caption: '',
+            path: ''
+        };
         $scope.alert_image = false;
 
         $scope.add = function(n) {
@@ -73,7 +74,7 @@ angular.module('xpassion.news', [])
                 return
             }
             News.save(n).$promise.then(function(nr) {
-                // $state.go('index.news.list');
+                $state.go('index.news.list');
             }, function(e) {
                 console.log(e);
             });
@@ -96,8 +97,8 @@ angular.module('xpassion.news', [])
         });
         $scope.uploader.onBeforeUploadItem = function(item) {
             item.formData = [
-                {'caption': $scope.image_caption},
-                {'platal_only': ($scope.image_visibility == 'platal')},
+                {'caption': $scope.image.caption},
+                {'platal_only': $scope.image.visibility == 'platal'},
                 {'type': 'news'},
             ];
         };
@@ -107,8 +108,8 @@ angular.module('xpassion.news', [])
             $scope.uploader.clearQueue();
         };
         $scope.uploader.onSuccessItem = function(item, response, status, headers) {
-            $scope.news.image = response.id;
-            $scope.image_path = response.file;
+            $scope.news.image_id = response.id;
+            $scope.image.path = response.file;
         };
     }]
 )

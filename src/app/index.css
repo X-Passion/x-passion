@@ -8,3 +8,7 @@
 body {
     background-color: #F1F2F6;
 }
+
+img.smaller-header {
+    max-height: 75px;
+}

@@ -8,7 +8,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="index">Accueil</a>
+            <a class="navbar-brand" ui-sref="index">
+                Accueil
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,6 +24,11 @@
                 <li ng-class="infos.active == 'issues' && 'active' || ''">
                     <a ui-sref="index.issues.list">
                         Liste des numéros
+                    </a>
+                </li>
+                <li ng-class="infos.active == 'news' && 'active' || ''">
+                    <a ui-sref="index.news.list">
+                        Actualités
                     </a>
                 </li>
                 <li ng-class="infos.active == 'contact' && 'active' || ''">
