@@ -99,6 +99,17 @@ angular.module('xpassion', [
       };
 })
 
+.filter('affs', function() { // displays plurial or singular
+    return function(text, n) {
+        n = n >= 0 ? n : -n;
+        if (n >= 2) {
+            return text + "s";
+        } else {
+            return text;
+        }
+    };
+})
+
 .run(['amMoment', '$rootScope',
     function(amMoment, $rootScope) {
         moment.locale('fr', {

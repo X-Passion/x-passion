@@ -1,0 +1,27 @@
+<div class="col-sm-12 well">
+    <div class="row">
+        <div class="col-sm-4">
+            <img ng-src="{{issue.front_cover.file}}" class="img-rounded img-responsive" />
+            <p class="img-comment">{{ issue.front_cover.caption }}</p>
+        </div>
+        <div class="col-sm-8">
+            <h2 >
+                <span class="lead">Numéro {{ issue.number }} • <em>publié le {{ issue.date | date:"dd MMMM yyyy" }}</em></span><br />
+                {{ issue.theme | uppercase }}
+            </h2>
+            <div class="lead" ng-if="issue.features.length > 0">
+                <strong>{{ 'Dossier' | affs:issue.features.length }}</strong> : 
+                <ul>
+                    <li ng-repeat="f in issue.features">{{ f.title }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br /><hr />
+
+    <h3 class="text-center">Sommaire</h3>
+
+    <xpassion:article article="art" admin="isLoggedIn()" ng-repeat-start="art in issue.articles | orderBy:art.begin_page"></xpassion:article>
+    <hr ng-repeat-end ng-if="$index =! $last" />
+</div>

@@ -61,9 +61,34 @@ angular.module('xpassion.issue', [])
 )
 
 .controller('issues.ctrl.details', 
-    ['$scope', 'req_issue', 
-    function($scope, req_issue) {
-        $scope.issue = req_issue;
+    ['$scope', 'req_issue', 'Issue', '$stateParams', 
+    function($scope, req_issue, Issue, $stateParams) {
+        Issue.get({id: $stateParams.id}).$promise.then(function(issue) {
+            $scope.issue = issue;
+            _.sortBy($scope.issue.articles, 'begin_page');
+            $scope.issue.items = [];
+            var rank = 0;
+            var current_feature = 0;
+            _.forEach($scope.issue.articles, function(a) {
+                if (a.feature === null) {
+                    $scope.issue.items.push({'rank': rank, 'type': 'article', 'obj': a});
+                    rank += 1;
+                } else {
+                    if (a.feature == current_feature) {
+                        $scope.issue.items[$scope.issue.items.length - 1].obj.articles.push(a);
+                    } else {
+                        var feature = _.find($scope.issue.features, function(f) {
+                            return f.id == a.feature;
+                        });
+                        feature.articles = [a];
+                        $scope.issue.items.push({'rank': rank, 'type': 'feature', 'obj': feature});
+                        rank += 1;
+                    }
+                }
+            });
+
+            console.log($scope.issue.items);
+        });
     }]
 )
 
@@ -74,7 +99,7 @@ angular.module('xpassion.issue', [])
             issue: '=issue',
             admin: '=?admin'
         },
-        templateUrl: 'app/components/issues/directive.html',
+        templateUrl: 'app/components/issues/issue-directive.html',
         controller: ['$scope', 'Issue', function($scope, Issue) {
             $scope.trash = function(i) {
                 i.published = false;
@@ -87,6 +112,22 @@ angular.module('xpassion.issue', [])
                 i.$restore().then(function(ir) {
                     // console.log(ir);
                 });
+            };
+        }]
+    };
+})
+
+.directive('xpassionArticle', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            article: '=article',
+            admin: '=?admin'
+        },
+        templateUrl: 'app/components/issues/article-directive.html',
+        controller: ['$scope', 'Article', function($scope, Article) {
+            $scope.bg_color = function(c) {
+                return 'linear-gradient(to right, rgba(1,0,255,0), rgba(0,255,0,0))';
             };
         }]
     };
