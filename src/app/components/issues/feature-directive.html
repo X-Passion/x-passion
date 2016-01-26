@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h4>
+            DOSSIER &ndash; {{ feature.title }}<br />
+        </h4>
+        <p class="text-justify">{{ feature.intro_paragraph }}</p>
+    </div>
+    <div class="col-sm-3">
+        <img ng-if="feature.image" ng-src="{{ feature.image.file }}" class="img-rounded img-responsive" />
+        <p class="small"><em>{{ feature.image.caption }}</em></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-11 col-sm-offset-1" style="border-left: dotted #CCD1D9 1px;" ng-repeat="art in feature.articles | orderBy:'begin_page'">
+        <xpassion:article article="art" admin="isLoggedIn()"></xpassion:article>
+    </div>
+</div>

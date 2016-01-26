@@ -18,10 +18,13 @@
         </div>
     </div>
 
-    <br /><hr />
+    <hr />
 
     <h3 class="text-center">Sommaire</h3>
 
-    <xpassion:article article="art" admin="isLoggedIn()" ng-repeat-start="art in issue.articles | orderBy:art.begin_page"></xpassion:article>
-    <hr ng-repeat-end ng-if="$index =! $last" />
+    <div ng-repeat="item in issue.items | orderBy:'rank'">
+        <xpassion:article article="item.obj" admin="isLoggedIn()" ng-if="item.type == 'article'"></xpassion:article>
+        <xpassion:feature feature="item.obj" admin="isLoggedIn()" ng-if="item.type == 'feature'"></xpassion:feature>
+        <hr ng-if="$index =! $last" />
+    </div>
 </div>

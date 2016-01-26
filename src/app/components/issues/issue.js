@@ -65,14 +65,11 @@ angular.module('xpassion.issue', [])
     function($scope, req_issue, Issue, $stateParams) {
         Issue.get({id: $stateParams.id}).$promise.then(function(issue) {
             $scope.issue = issue;
-            _.sortBy($scope.issue.articles, 'begin_page');
             $scope.issue.items = [];
-            var rank = 0;
             var current_feature = 0;
             _.forEach($scope.issue.articles, function(a) {
                 if (a.feature === null) {
-                    $scope.issue.items.push({'rank': rank, 'type': 'article', 'obj': a});
-                    rank += 1;
+                    $scope.issue.items.push({'rank': a.begin_page, 'type': 'article', 'obj': a});
                 } else {
                     if (a.feature == current_feature) {
                         $scope.issue.items[$scope.issue.items.length - 1].obj.articles.push(a);
@@ -81,12 +78,10 @@ angular.module('xpassion.issue', [])
                             return f.id == a.feature;
                         });
                         feature.articles = [a];
-                        $scope.issue.items.push({'rank': rank, 'type': 'feature', 'obj': feature});
-                        rank += 1;
+                        $scope.issue.items.push({'rank': a.begin_page, 'type': 'feature', 'obj': feature});
                     }
                 }
             });
-
             console.log($scope.issue.items);
         });
     }]
@@ -113,6 +108,20 @@ angular.module('xpassion.issue', [])
                     // console.log(ir);
                 });
             };
+        }]
+    };
+})
+
+.directive('xpassionFeature', function() {
+    return {
+        restrict: 'E',
+        scope: {
+            feature: '=feature',
+            admin: '=?admin'
+        },
+        templateUrl: 'app/components/issues/feature-directive.html',
+        controller: ['$scope', 'Feature', function($scope, Feature) {
+            // 
         }]
     };
 })
