@@ -1,15 +1,20 @@
 <div class="row">
+    {{features}}
     <div class="col-sm-3">
-        <span class="h6 label label-default pull-right">{{ article.category.name }}</span>
+        <span ng-if="!article.feature" class="h6 label label-default pull-right" style="background-color: {{article.category.color}};">{{ article.category.name }}</span>
+        <span ng-if="article.feature" class="h6 label label-default pull-right" style="background-color: {{article.feature.color}};">Dossier</span>
         <img ng-if="article.image" ng-src="{{ article.image.file }}" class="img-rounded img-responsive" />
         <p class="small"><em>{{ article.image.caption }}</em></p>
     </div>
     <div class="col-sm-9">
         <h4>
             <span class="pull-right">p. {{ article.begin_page }}</span>
-            {{ article.title }}<br />            
-            <em class="small">{{ article.author_firstname }} {{ article.author_lastname }}</em>
+            <a ui-sref="index.issues.article({id: article.id})" ng-if="article.intro_paragraph">{{ article.title }}</a>
+            <span ng-if="!article.intro_paragraph">{{ article.title }}</span>
+            <br />
+
+            <em class="small" ng-repeat="author in article.authors">{{ author.firstname }} {{ author.lastname }} <span ng-if="author.promotion">(X{{author.promotion}})</span><span ng-if="$index =! $last">, </span></em>
         </h4>
-        <p class="text-justify">{{ article.intro_paragraph }}</p>
+        <p class="text-justify">{{ article.description }}</p>
     </div>
 </div>

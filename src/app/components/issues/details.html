@@ -1,4 +1,5 @@
 <div class="col-sm-12 well">
+    <p><a ui-sref="index.issues.list"><span class="glyphicon glyphicon-chevron-left"></span> Retour à la liste des numéros</a></p>
     <div class="row">
         <div class="col-sm-4">
             <img ng-src="{{issue.front_cover.file}}" class="img-rounded img-responsive" />
@@ -9,12 +10,10 @@
                 <span class="lead">Numéro {{ issue.number }} • <em>publié le {{ issue.date | date:"dd MMMM yyyy" }}</em></span><br />
                 {{ issue.theme | uppercase }}
             </h2>
-            <div class="lead" ng-if="issue.features.length > 0">
-                <strong>{{ 'Dossier' | affs:issue.features.length }}</strong> : 
-                <ul>
-                    <li ng-repeat="f in issue.features">{{ f.title }}</li>
-                </ul>
-            </div>
+            <!--<div class="lead" ng-if="issue.features.length > 0">
+                <strong>{{ 'Dossier' | affs:issue.features.length }}</strong> :
+                <span class="badge badge-default" ng-repeat="f in issue.features">{{ f.title }} </span>
+            </div>-->
         </div>
     </div>
 

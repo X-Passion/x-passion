@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" ui-sref="index">
-                Accueil
+                <span class="glyphicon glyphicon-home"></span> Accueil
             </a>
         </div>
 
@@ -18,37 +18,37 @@
             <ul class="nav navbar-nav">
                 <li ng-class="infos.active == 'presentation' && 'active' || ''">
                     <a ui-sref="index.presentation">
-                        Présentation
+                        <span class="glyphicon glyphicon-info-sign"></span> Présentation
                     </a>
                 </li>
                 <li ng-class="infos.active == 'issues' && 'active' || ''">
                     <a ui-sref="index.issues.list">
-                        Liste des numéros
+                        <span class="glyphicon glyphicon-th-list"></span> Liste des numéros
                     </a>
                 </li>
                 <li ng-class="infos.active == 'news' && 'active' || ''">
                     <a ui-sref="index.news.list">
-                        Actualités
+                        <span class="glyphicon glyphicon-pushpin"></span> Actualités
                     </a>
                 </li>
                 <li ng-class="infos.active == 'contact' && 'active' || ''">
                     <a ui-sref="index.contact">
-                        Contactez-nous
+                        <span class="glyphicon glyphicon-earphone"></span> Contactez-nous
                     </a>
                 </li>
                 <li ng-class="infos.active == 'entreprises' && 'active' || ''">
                     <a ui-sref="index.entreprises">
-                        Entreprises
+                        <span class="glyphicon glyphicon-globe"></span> Entreprises
                     </a>
                 </li>
                 <li ng-class="infos.active == 'comments' && 'active' || ''">
                     <a ui-sref="index.comments.list">
-                        Vos commentaires
+                        <span class="glyphicon glyphicon-send"></span> Vos commentaires
                     </a>
                 </li>
                 <li ng-class="infos.active == 'ecrire' && 'active' || ''">
                     <a ui-sref="index.ecrire">
-                        Écrire dans X-Passion
+                        <span class="glyphicon glyphicon-leaf"></span> Écrire dans X-Passion
                     </a>
                 </li>
             </ul>
@@ -62,17 +62,18 @@
             <div class="row">
                 <div ui-view="header"></div>
             </div>
-                        
+
             <div id="main-content" class="row">
                 <div ui-view=""></div>
             </div>
-                        
+
             <div class="row">
                 <div class="text-center">
+                    &copy 2016
                     <ul class="list-inline small">
                         <li ng-if="!isLoggedIn()"><a href="" ng-click="loginOpen()">Connexion</a></li>
                         <li ng-if="isLoggedIn()"><a href="" ng-click="logout()">Déconnexion</a></li>
-                        <li>Lien</li>
+
                     </ul>
                     <br />
                 </div>

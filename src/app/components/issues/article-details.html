@@ -1,0 +1,30 @@
+<div class="col-sm-12 well">
+    <p><a ui-sref="index.issues.details({id: article.issue})"><span class="glyphicon glyphicon-chevron-left"></span> Retour au sommaire</a></p>
+    <div class="row">
+        <div class="col-sm-4">
+            <img ng-src="{{article.image.file}}" class="img-rounded img-responsive" />
+            <p class="img-comment">{{ article.image.caption }}</p>
+            <p class="text-note">{{ article.image.subcaption }}</p>
+        </div>
+        <div class="col-sm-8">
+            <h2>
+                <span class="heading-note">{{article.title}}</span>
+            </h2>
+            <h5>{{article.subtitle | uppercase}}</h5>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    par <em class="small" ng-repeat="author in article.authors">{{ author.firstname }} {{ author.lastname }} </em>
+                </div>
+                <div class="col-sm-4">
+                    <a class="btn btn-info btn-block" href="{{article.pdf}}"><span class="glyphicon glyphicon-download"></span> Télécharger (PDF)</a>
+                </div>
+            </div>
+            <hr/>
+            <p class="lead text-justify">{{ article.intro_paragraph }}</p>
+
+            <p class="text-justify" ng-if="article.excerpt"><em>Extrait</em> : {{ article.excerpt }} <em>(...)</em></p>
+
+        </div>
+    </div>
+</div>

@@ -32,11 +32,21 @@ angular.module('xpassion.issue', [])
                     }]
                 }
             })
+            .state('index.issues.article', {
+                url: "/article/:id",
+                templateUrl: "app/components/issues/article-details.html",
+                controller: 'articles.ctrl.details',
+                resolve: {
+                    req_article: ['Article', '$stateParams', function(Article, $stateParams) {
+                        return Article.get({id: $stateParams.id});
+                    }]
+                }
+            })
     ;
 }])
 
-.controller('issues.ctrl.list', 
-    ['$scope', 'issues_list', 
+.controller('issues.ctrl.list',
+    ['$scope', 'issues_list',
     function($scope, issues_list) {
         $scope.issues_list = issues_list;
         $scope.total = issues_list.length;
@@ -60,29 +70,43 @@ angular.module('xpassion.issue', [])
     }]
 )
 
-.controller('issues.ctrl.details', 
-    ['$scope', 'req_issue', 'Issue', '$stateParams', 
+.controller('issues.ctrl.details',
+    ['$scope', 'req_issue', 'Issue', '$stateParams',
     function($scope, req_issue, Issue, $stateParams) {
         Issue.get({id: $stateParams.id}).$promise.then(function(issue) {
             $scope.issue = issue;
             $scope.issue.items = [];
-            var current_feature = 0;
+            var features = {};
             _.forEach($scope.issue.articles, function(a) {
                 if (a.feature === null) {
                     $scope.issue.items.push({'rank': a.begin_page, 'type': 'article', 'obj': a});
                 } else {
-                    if (a.feature == current_feature) {
-                        $scope.issue.items[$scope.issue.items.length - 1].obj.articles.push(a);
+                    if (a.feature in features) {
+                        features[a.feature].articles.push(a);
+                        //$scope.issue.items[$scope.issue.items.length - 1].obj.articles.push(a);
                     } else {
                         var feature = _.find($scope.issue.features, function(f) {
                             return f.id == a.feature;
                         });
                         feature.articles = [a];
+                        features[feature.id] = feature;
                         $scope.issue.items.push({'rank': a.begin_page, 'type': 'feature', 'obj': feature});
                     }
+                    a.feature = features[a.feature];
                 }
             });
-            console.log($scope.issue.items);
+            $scope.features = features;
+            console.log($scope.issue);
+        });
+    }]
+)
+
+.controller('articles.ctrl.details',
+    ['$scope', 'req_article', 'Article', '$stateParams',
+    function($scope, req_article, Article, $stateParams) {
+        Article.get({id: $stateParams.id}).$promise.then(function(article) {
+            $scope.article = article;
+            console.log($scope.article);
         });
     }]
 )
@@ -121,7 +145,7 @@ angular.module('xpassion.issue', [])
         },
         templateUrl: 'app/components/issues/feature-directive.html',
         controller: ['$scope', 'Feature', function($scope, Feature) {
-            // 
+            //
         }]
     };
 })
