@@ -12,3 +12,7 @@ body {
 img.smaller-header {
     max-height: 75px;
 }
+
+.text {
+    font-family: 'EB Garamond', serif;
+}
