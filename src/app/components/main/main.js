@@ -4,7 +4,7 @@ angular.module('xpassion.main', [
     //
 ])
 
-.config(['$stateProvider', '$urlMatcherFactoryProvider', 
+.config(['$stateProvider', '$urlMatcherFactoryProvider',
     function($stateProvider, $urlMatcherFactoryProvider) {
     //$urlMatcherFactoryProvider.strictMode(false);
     $stateProvider
@@ -38,7 +38,7 @@ angular.module('xpassion.main', [
                 $scope.infos.active = 'presentation';
             }]
         })
-        
+
         .state('index.forgot-password', {
             url: "forgot-password",
             templateUrl: "app/components/auth/forgot-password.html",
@@ -90,7 +90,7 @@ angular.module('xpassion.main', [
 }])
 
 .controller('main.ctrl.base',
-    ['$scope', '$stateParams', 'AuthService', '$state', '$modal', 
+    ['$scope', '$stateParams', 'AuthService', '$state', '$modal',
     function($scope, $stateParams, AuthService, $state, $modal) {
         $scope.infos = {
             active: 'index',
@@ -122,22 +122,22 @@ angular.module('xpassion.main', [
 
 .controller(
     'main.ctrl.header',
-    ['$scope', 'AuthService', 
+    ['$scope', 'AuthService',
     function($scope, AuthService) {
         //
     }]
 )
 
-.controller('main.ctrl.home', 
-    ['$scope', '$state', 'news_list', 
+.controller('main.ctrl.home',
+    ['$scope', '$state', 'news_list',
     function($scope, $state, news_list) {
         $scope.infos.active = 'home';
         $scope.news_list = news_list;
     }]
 )
 
-.controller('main.ctrl.login', 
-    ['$scope', 'AuthService', '$modalInstance', '$state', '$timeout', 
+.controller('main.ctrl.login',
+    ['$scope', 'AuthService', '$modalInstance', '$state', '$timeout',
     function($scope, AuthService, $modalInstance, $state, $timeout){
         $scope.login = {
             username: '',
@@ -182,7 +182,7 @@ angular.module('xpassion.main', [
 )
 
 .controller('main.ctrl.forgot_pwd',
-    ['$scope', 'User', 
+    ['$scope', 'User',
     function($scope, User) {
         $scope.infos.active = '';
 

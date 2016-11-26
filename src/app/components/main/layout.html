@@ -1,3 +1,9 @@
+<div class="page-header text-center">
+  <a ui-sref="index">
+    <img src="assets/images/logo-x-passion.png" class="smaller-header" />
+  </a>
+</div>
+
 <div class="navbar-wrapper">
   <div class="container-fluid">
     <nav class="navbar navbar-light navbar-static-top" role="navigation">
@@ -10,38 +16,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref="index">
-                    <!--<span class="glyphicon glyphicon-home"></span> Accueil-->
+                <!--<a class="navbar-brand" ui-sref="index">
                     <img src="assets/images/logo-x-passion.png" width="100" />
-                </a>
+                </a>-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li ng-class="infos.active == 'home' && 'active' || ''">
+                        <a ui-sref="index">
+                            <!--<span class="glyphicon glyphicon-info-sign"></span>--> Accueil
+                        </a>
+                    </li>
                     <li ng-class="infos.active == 'presentation' && 'active' || ''">
                         <a ui-sref="index.presentation">
-                            <span class="glyphicon glyphicon-info-sign"></span> Présentation
+                            <!--<span class="glyphicon glyphicon-info-sign"></span>--> X-Passion
                         </a>
                     </li>
                     <li ng-class="infos.active == 'issues' && 'active' || ''">
                         <a ui-sref="index.issues.list">
-                            <span class="glyphicon glyphicon-th-list"></span> Numéros
+                            <!--<span class="glyphicon glyphicon-th-list"></span>--> Numéros
                         </a>
                     </li>
-                    <li ng-class="infos.active == 'news' && 'active' || ''">
+                    <!--<li ng-class="infos.active == 'news' && 'active' || ''">
                         <a ui-sref="index.news.list">
-                            <span class="glyphicon glyphicon-pushpin"></span> Actualités
+                            Actualités
                         </a>
-                    </li>
-                    <li ng-class="infos.active == 'contact' && 'active' || ''">
-                        <a ui-sref="index.contact">
-                            <span class="glyphicon glyphicon-earphone"></span> Contact
-                        </a>
-                    </li>
+                    </li>-->
                     <li ng-class="infos.active == 'entreprises' && 'active' || ''">
                         <a ui-sref="index.entreprises">
-                            <span class="glyphicon glyphicon-globe"></span> Entreprises
+                            <!--<span class="glyphicon glyphicon-globe"></span>--> Entreprises
                         </a>
                     </li>
                     <!--<li ng-class="infos.active == 'comments' && 'active' || ''">
@@ -51,7 +56,12 @@
                     </li>-->
                     <li ng-class="infos.active == 'ecrire' && 'active' || ''">
                         <a ui-sref="index.ecrire">
-                            <span class="glyphicon glyphicon-leaf"></span> Écrire dans X-Passion
+                            <!--<span class="glyphicon glyphicon-leaf"></span>--> Écrire
+                        </a>
+                    </li>
+                    <li ng-class="infos.active == 'contact' && 'active' || ''">
+                        <a ui-sref="index.contact">
+                          <!--  <span class="glyphicon glyphicon-earphone"></span>--> Contact
                         </a>
                     </li>
                 </ul>

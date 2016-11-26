@@ -2,32 +2,32 @@
 
 angular.module('xpassion', [
     'angularMoment',
-    'ngAnimate', 
-    'ngCookies', 
-    'ngTouch', 
-    'ngSanitize', 
-    'ngResource', 
-    'ui.router', 
+    'ngAnimate',
+    'ngCookies',
+    'ngTouch',
+    'ngSanitize',
+    'ngResource',
+    'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
 
     'xpassion.auth',
     'xpassion.api',
-    
+
     'xpassion.main',
     'xpassion.comment',
     'xpassion.news',
-    'xpassion.issue', 
+    'xpassion.issue',
 ])
 
-.factory('http.request.interceptor', 
+.factory('http.request.interceptor',
     ['$q', '$location',
     function ($q, $location) {
         return {
             'responseError': function(rejection) {
                 // do something on error
                 if(rejection.status === 404){
-                    $location.path('/404');                    
+                    $location.path('/404');
                 }
                 return $q.reject(rejection);
              }

@@ -1,7 +1,3 @@
-<div class="page-header text-center">
-    <img src="assets/images/logo-x-passion.png" ng-class="infos.active != 'home' && 'smaller-header' || ''" />
-</div>
-
 <div class="col-sm-12">
     <div class="row">
         <p>
@@ -17,11 +13,16 @@
         </p>
     </div>
     <div class="row">
-        <h3>Actualités</h3>
+      <div class="striked"><h3 class="striked-text">Actualités</h3></div>
 
-        <div class="col-sm-10 col-sm-offset-1">
-            <xpassion:news news="news" ng-repeat="news in news_list | filter:!'deleted' | orderBy:'date':true | limitTo:10"></xpassion:news>
-            <a ui-sref="index.news.list" ng-if="news_list.length > 10" class="pull-right">Voir les actualités plus anciennes...</a>
-        </div>
+      <a class="btn btn-success pull-right" ui-sref="index.news.add" ng-if="isLoggedIn()">Ajouter une actualité</a>
+      <br /><br />
+
+      <div class="timeline">
+          <dl>
+            <!--<dt>Actualités</dt>-->
+            <xpassion:news news="news" admin="isLoggedIn()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
+          </dl>
+      </div>
     </div>
 </div>

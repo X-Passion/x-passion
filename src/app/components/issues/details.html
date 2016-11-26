@@ -1,4 +1,4 @@
-<div class="col-sm-12 well">
+<div class="col-sm-12">
     <p><a ui-sref="index.issues.list"><span class="glyphicon glyphicon-chevron-left"></span> Retour à la liste des numéros</a></p>
     <div class="row">
         <div class="col-sm-4">
@@ -6,8 +6,8 @@
             <p class="img-comment">{{ issue.front_cover.caption }}</p>
         </div>
         <div class="col-sm-8">
-            <h2 >
-                <span class="lead">Numéro {{ issue.number }} • <em>publié le {{ issue.date | date:"dd MMMM yyyy" }}</em></span><br />
+            <h2 class="issue-title">
+                <span class="lead">Numéro <span class="numero">{{ issue.number }}</span> • <em>publié le {{ issue.date | date:"dd MMMM yyyy" }}</em></span><br />
                 {{ issue.theme | uppercase }}
             </h2>
             <!--<div class="lead" ng-if="issue.features.length > 0">
@@ -19,7 +19,7 @@
 
     <hr />
 
-    <h3 class="text-center">Sommaire</h3>
+    <div class="striked"><h3 class="text-center striked-text">Sommaire</h3></div>
 
     <div ng-repeat="item in issue.items | orderBy:'rank'">
         <xpassion:article article="item.obj" admin="isLoggedIn()" ng-if="item.type == 'article'"></xpassion:article>

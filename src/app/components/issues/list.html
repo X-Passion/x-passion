@@ -8,7 +8,19 @@
         </ul>
     </nav>
 
-    <div class="row">
+    <div class="row issues_list no-gutter">
         <xpassion:issue issue="issue" admin="isLoggedIn()" ng-repeat="issue in issues_list | filter:filterIssuesAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:issue>
     </div>
+
+    <!--<div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".tile", "gutter": 0, "columnWidth": 20}'>
+      <div masonry-tile class="tile" ng-repeat="issue in issues_list | filter:filterIssuesAdmin | orderBy:'date':true | limitTo:p.limit:p.offset">
+        <img ng-src="{{ issue.front_cover.file }}" class="img-rounded" width="20%"/>
+      </div>
+    </div>-->
+
+    <!--<div class="grid">
+      <div class="grid-item" ng-repeat="issue in issues_list | filter:filterIssuesAdmin | orderBy:'date':true | limitTo:p.limit:p.offset">
+        <img ng-src="{{ issue.front_cover.file }}" class="img-rounded" width="20%"/>
+      </div>
+    </div>-->
 </div>

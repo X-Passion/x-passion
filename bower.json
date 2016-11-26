@@ -1,6 +1,6 @@
 {
   "name": "xpassion",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
     "angular-animate": "~1.4",
     "angular-cookies": "~1.4",
@@ -25,5 +25,13 @@
   },
   "resolutions": {
     "angular": "~1.4"
+  },
+  "overrides": {
+    "masonry": {
+      "main": [
+        "./assets/js/masonry.pkgd.min.js"
+      ],
+      "dependencies": {}
+    }
   }
 }

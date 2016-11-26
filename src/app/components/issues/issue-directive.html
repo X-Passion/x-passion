@@ -1,5 +1,5 @@
 <div class="col-sm-3 col-xs-6">
-    <div class="thumbnail">
+    <!--<div class="thumbnail">
         <a ui-sref="index.issues.details({id: issue.id})">
             <img ng-src="{{ issue.front_cover.file }}" class="img-rounded" />
         </a>
@@ -13,5 +13,29 @@
                 <a class="btn btn-sm btn-warning" ng-click="untrash(issue)" ng-if="!issue.published"><span class="glyphicon glyphicon-refresh"></span> Remettre</a>
             </span>
         </div>
-    </div>
+    </div>-->
+
+      <div class="hovereffect">
+          <img ng-src="{{ issue.front_cover.file }}" class="img-rounded img-responsive" width="100%"/>
+
+          <div class="overlay">
+            <a ui-sref="index.issues.details({id: issue.id})" style="display: block">
+            <h2>{{ issue.number }}</h2>
+            <div class="hover-caption">
+              <p><small><em>paru le {{ issue.date | date:"dd MMMM yyyy" }}</em></small></p>
+
+              <h4>{{ issue.theme }}</h4>
+            </a>
+              <p>
+              <span ng-if="admin">
+                  <a class="btn btn-sm btn-danger" ng-click="trash(issue)" ng-if="issue.published"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
+                  <a class="btn btn-sm btn-warning" ng-click="untrash(issue)" ng-if="!issue.published"><span class="glyphicon glyphicon-refresh"></span> Remettre</a>
+              </span>
+              </p>
+            </div>
+          </div>
+
+
+        </div>
+
 </div>
