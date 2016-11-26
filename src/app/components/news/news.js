@@ -31,8 +31,8 @@ angular.module('xpassion.news', [])
     ;
 }])
 
-.controller('news.ctrl.list', 
-    ['$scope', 'news_list', 
+.controller('news.ctrl.list',
+    ['$scope', 'news_list',
     function($scope, news_list) {
         $scope.news_list = news_list;
         $scope.total = news_list.length;
@@ -56,8 +56,8 @@ angular.module('xpassion.news', [])
     }]
 )
 
-.controller('news.ctrl.add', 
-    ['$scope', 'News', '$stateParams', 'FileUploader', 'API', 'AuthService', '$state', 
+.controller('news.ctrl.add',
+    ['$scope', 'News', '$stateParams', 'FileUploader', 'API', 'AuthService', '$state',
     function($scope, News, $stateParams, FileUploader, API, AuthService, $state) {
         $scope.news = new News();
         $scope.news.image_id = null;
@@ -85,7 +85,7 @@ angular.module('xpassion.news', [])
             url: API.route('images/'),
             headers: { 'Authorization': "JWT " + AuthService.getToken() },
             method: 'POST',
-            alias: 'file', 
+            alias: 'file',
             queueLimit: 1
         });
         $scope.uploader.filters.push({
@@ -119,7 +119,8 @@ angular.module('xpassion.news', [])
         restrict: 'E',
         scope: {
             news: '=news',
-            admin: '=?admin'
+            admin: '=?admin',
+            index: '=index',
         },
         templateUrl: 'app/components/news/directive.html',
         controller: ['$scope', 'News', function($scope, News) {

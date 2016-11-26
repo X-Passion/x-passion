@@ -26,7 +26,7 @@
                     </li>
                     <li ng-class="infos.active == 'issues' && 'active' || ''">
                         <a ui-sref="index.issues.list">
-                            <span class="glyphicon glyphicon-th-list"></span> Liste des numéros
+                            <span class="glyphicon glyphicon-th-list"></span> Numéros
                         </a>
                     </li>
                     <li ng-class="infos.active == 'news' && 'active' || ''">
@@ -36,7 +36,7 @@
                     </li>
                     <li ng-class="infos.active == 'contact' && 'active' || ''">
                         <a ui-sref="index.contact">
-                            <span class="glyphicon glyphicon-earphone"></span> Contactez-nous
+                            <span class="glyphicon glyphicon-earphone"></span> Contact
                         </a>
                     </li>
                     <li ng-class="infos.active == 'entreprises' && 'active' || ''">
@@ -44,11 +44,11 @@
                             <span class="glyphicon glyphicon-globe"></span> Entreprises
                         </a>
                     </li>
-                    <li ng-class="infos.active == 'comments' && 'active' || ''">
+                    <!--<li ng-class="infos.active == 'comments' && 'active' || ''">
                         <a ui-sref="index.comments.list">
                             <span class="glyphicon glyphicon-send"></span> Vos commentaires
                         </a>
-                    </li>
+                    </li>-->
                     <li ng-class="infos.active == 'ecrire' && 'active' || ''">
                         <a ui-sref="index.ecrire">
                             <span class="glyphicon glyphicon-leaf"></span> Écrire dans X-Passion
@@ -72,17 +72,22 @@
                 <div ui-view=""></div>
             </div>
 
-            <div class="row">
-                <div class="text-center">
-                    &copy 2016
-                    <ul class="list-inline small">
-                        <li ng-if="!isLoggedIn()"><a href="" ng-click="loginOpen()">Connexion</a></li>
-                        <li ng-if="isLoggedIn()"><a href="" ng-click="logout()">Déconnexion</a></li>
-
-                    </ul>
-                    <br />
-                </div>
-            </div>
         </div>
+    </div>
+
+    <div class="row">
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-copyright text-center">
+              &copy 2016
+              <ul class="list-inline small">
+                  <li ng-if="!isLoggedIn()"><a href="" ng-click="loginOpen()">Connexion</a></li>
+                  <li ng-if="isLoggedIn()"><a href="" ng-click="logout()">Déconnexion</a></li>
+
+              </ul>
+              <br />
+          </div>
+        </div>
+      </footer>
     </div>
 </div>

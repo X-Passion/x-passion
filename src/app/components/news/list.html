@@ -11,7 +11,10 @@
         </ul>
     </nav>
 
-    <div>
-        <xpassion:news news="news" admin="isLoggedIn()" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
+    <div class="timeline">
+        <dl>
+          <!--<dt>Actualités</dt>-->
+          <xpassion:news news="news" admin="isLoggedIn()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
+        </dl>
     </div>
 </div>
