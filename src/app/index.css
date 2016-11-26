@@ -16,3 +16,38 @@ img.smaller-header {
 .text {
     font-family: 'EB Garamond', serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Asul', sans-serif;
+}
+
+/* ----------- Navbar ----------------- */
+.navbar, .dropdown-menu{
+  /*background:rgba(255,255,255,0.25);
+  border: none;*/
+}
+
+.navbar a {
+  color: black;
+}
+
+/*.nav>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a, .dropdown-menu>li{
+  border-bottom: 3px solid transparent;
+}
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  border-bottom: 3px solid transparent;
+  background: none;
+}*/
+
+.nav li, .dropdown-menu li {
+  border-bottom: 3px solid transparent;
+}
+
+.dropdown-menu{
+      -webkit-box-shadow: none;
+    box-shadow:none;
+}
+
+.nav li:hover , .nav li.active {
+  border-bottom: #C4E17F 3px solid;
+}

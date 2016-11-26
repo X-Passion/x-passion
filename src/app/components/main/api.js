@@ -4,15 +4,16 @@ angular.module('xpassion.api', [
     'ngResource'
 ])
 
-.factory('API', ['$location', 
+.factory('API', ['$location',
     function ($location) {
-        return { 
+        return {
             route: function (path) {
-                if (/localhost/.test($location.absUrl())) {
+                /*if (/localhost/.test($location.absUrl())) {
                     return 'http://127.0.0.1:8000' + (path == '' ? '' : '/' + path);
                 } else {
                     return 'api' + (path == '' ? '' : '/' + path);
-                }
+                }*/
+                return 'http://api.x-passion.binets.fr' + (path == '' ? '' : '/' + path);
             }
         };
     }

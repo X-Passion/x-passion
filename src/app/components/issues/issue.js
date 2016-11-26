@@ -52,7 +52,7 @@ angular.module('xpassion.issue', [])
         $scope.total = issues_list.length;
         $scope.p = {
             total: function() { return issues_list.length; },
-            limit: 10,
+            limit: 8,
             offset: 0
         };
 
