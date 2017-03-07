@@ -171,6 +171,7 @@ div.issues_list div.caption {
   transform: translate3d(-10px,0,0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  height: 400px;
 }
 
 .hovereffect:hover img {
