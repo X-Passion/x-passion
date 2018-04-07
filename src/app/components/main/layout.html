@@ -59,6 +59,11 @@
                             <!--<span class="glyphicon glyphicon-leaf"></span>--> Écrire
                         </a>
                     </li>
+                    <li ng-class="infos.active == 'abonnements' && 'active' || ''">
+                        <a ui-sref="index.abonnements">
+                          Abonnements
+                        </a>
+                    </li>
                     <li ng-class="infos.active == 'contact' && 'active' || ''">
                         <a ui-sref="index.contact">
                           <!--  <span class="glyphicon glyphicon-earphone"></span>--> Contact
