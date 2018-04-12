@@ -9,7 +9,7 @@ angular.module('xpassion.main', [
     //$urlMatcherFactoryProvider.strictMode(false);
     $stateProvider
         .state('index', {
-            url: "/",
+            url: '/',
             resolve: {
                 news_list: ['News', function(News) {
                     return News.query();
@@ -17,57 +17,57 @@ angular.module('xpassion.main', [
             },
             views: {
                 '@': {
-                    templateUrl: "app/components/main/layout.html",
+                    templateUrl: 'app/components/main/layout.html',
                     controller: 'main.ctrl.base'
                 },
                 'header@index': {
-                    templateUrl: "app/components/main/header.html",
+                    templateUrl: 'app/components/main/header.html',
                     controller: 'main.ctrl.header',
 
                 },
                 '@index': {
-                    templateUrl: "app/components/main/home.html",
+                    templateUrl: 'app/components/main/home.html',
                     controller: 'main.ctrl.home'
                 }
             }
         })
         .state('index.presentation', {
-            url: "presentation",
-            templateUrl: "app/components/static/presentation.html",
+            url: 'presentation',
+            templateUrl: 'app/components/static/presentation.html',
             controller: ['$scope', function($scope) {
                 $scope.infos.active = 'presentation';
             }]
         })
 
         .state('index.forgot-password', {
-            url: "forgot-password",
-            templateUrl: "app/components/auth/forgot-password.html",
+            url: 'forgot-password',
+            templateUrl: 'app/components/auth/forgot-password.html',
             controller: 'main.ctrl.forgot_pwd'
         })
         .state('index.contact', {
-            url: "contact",
-            templateUrl: "app/components/static/contact.html",
+            url: 'contact',
+            templateUrl: 'app/components/static/contact.html',
             controller: ['$scope', function($scope){
                 $scope.infos.active = 'contact';
             }]
         })
         .state('index.abonnements', {
-            url: "abonnements",
-            templateUrl: "app/components/static/abonnements.html",
+            url: 'abonnements',
+            templateUrl: 'app/components/static/abonnements.html',
             controller: ['$scope', function($scope){
                 $scope.infos.active = 'abonnements';
             }]
         })
         .state('index.entreprises', {
-            url: "entreprises",
-            templateUrl: "app/components/static/entreprises.html",
+            url: 'entreprises',
+            templateUrl: 'app/components/static/entreprises.html',
             controller: ['$scope', function($scope){
                 $scope.infos.active = 'entreprises';
             }]
         })
         .state('index.ecrire', {
-            url: "ecrire",
-            templateUrl: "app/components/static/ecrire.html",
+            url: 'ecrire',
+            templateUrl: 'app/components/static/ecrire.html',
             controller: ['$scope', function($scope){
                 $scope.infos.active = 'ecrire';
             }]
@@ -84,8 +84,8 @@ angular.module('xpassion.main', [
         //     }]
         // })
         .state('index.404', {
-            url: "404",
-            templateUrl: "app/components/static/404.html",
+            url: '404',
+            templateUrl: 'app/components/static/404.html',
             controller: ['$scope', '$timeout', '$state', function($scope, $timeout, $state) {
                 $scope.infos.active = '';
                 // $timeout(function() {
@@ -115,7 +115,7 @@ angular.module('xpassion.main', [
 
         $scope.loginOpen = function(size) {
             var modalInstance = $modal.open({
-                templateUrl: "app/components/auth/login.html",
+                templateUrl: 'app/components/auth/login.html',
                 controller: 'main.ctrl.login',
                 animation: false
             });
@@ -152,7 +152,7 @@ angular.module('xpassion.main', [
         };
 
         $timeout(function () {
-            document.getElementById("usernameInput").focus();
+            document.getElementById('usernameInput').focus();
         }, 300);
 
         $scope.alerts = [];

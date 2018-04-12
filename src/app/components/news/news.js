@@ -6,16 +6,16 @@ angular.module('xpassion.news', [])
     //$urlMatcherFactoryProvider.strictMode(false);
     $stateProvider
         .state('index.news', {
-            url: "news",
+            url: 'news',
             abstract: true,
-            template: "<ui-view />",
+            template: '<ui-view />',
             controller: ['$scope', function($scope){
                 $scope.infos.active = 'news';
             }]
         })
             .state('index.news.list', {
-                url: "/list",
-                templateUrl: "app/components/news/list.html",
+                url: '/list',
+                templateUrl: 'app/components/news/list.html',
                 controller: 'news.ctrl.list',
                 resolve: {
                     news_list: ['News', function(News) {
@@ -24,8 +24,8 @@ angular.module('xpassion.news', [])
                 }
             })
             .state('index.news.add', {
-                url: "/add",
-                templateUrl: "app/components/news/add.html",
+                url: '/add',
+                templateUrl: 'app/components/news/add.html',
                 controller: 'news.ctrl.add'
             })
     ;
@@ -71,7 +71,7 @@ angular.module('xpassion.news', [])
         $scope.add = function(n) {
             if ($scope.uploader.queue.length > 0) {
                 $scope.alert_image = true;
-                return
+                return;
             }
             News.save(n).$promise.then(function(nr) {
                 $state.go('index.news.list');
@@ -83,7 +83,7 @@ angular.module('xpassion.news', [])
         $scope.uploadSucces = false;
         $scope.uploader = new FileUploader({
             url: API.route('images/'),
-            headers: { 'Authorization': "JWT " + AuthService.getToken() },
+            headers: { 'Authorization': 'JWT ' + AuthService.getToken() },
             method: 'POST',
             alias: 'file',
             queueLimit: 1

@@ -13,7 +13,8 @@
             <span ng-if="!article.intro_paragraph">{{ article.title }}</span>
             <br />
 
-            <em class="small" ng-repeat="author in article.authors">{{ author.firstname }} {{ author.lastname }} <span ng-if="author.promotion">(X{{author.promotion}})</span><span ng-if="$index =! $last">, </span></em>
+            <em class="small" ng-repeat="author in article.authors">{{
+		    author.firstname }} {{ author.lastname }} <span ng-if="author.promotion">(X{{author.promotion}})</span><span ng-if="$index =! $last">{{ ', ' }}</span></em>
         </h4>
         <p class="text-justify">{{ article.description }}</p>
     </div>
