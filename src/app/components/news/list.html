@@ -1,7 +1,8 @@
 <div class="col-sm-12">
     <h2 class="text-center">Actualités</h2>
 
-    <a class="btn btn-success pull-right" ui-sref="index.news.add" ng-if="isLoggedIn()">Ajouter une actualité</a>
+    <a class="btn btn-success pull-right" ui-sref="index.news.add"
+					  ng-if="canEdit()">Ajouter une actualité</a>
     <br /><br />
 
     <nav>
@@ -14,7 +15,7 @@
     <div class="timeline">
         <dl>
           <!--<dt>Actualités</dt>-->
-          <xpassion:news news="news" admin="isLoggedIn()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
+          <xpassion:news news="news" admin="canEdit()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
         </dl>
     </div>
 </div>

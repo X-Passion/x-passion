@@ -31,7 +31,7 @@ angular.module('xpassion.comment', [])
         $scope.comments = comments_list;
 
         $scope.filterDeleted = function() {
-            if ($scope.isLoggedIn()) {
+            if ($scope.canEdit()) {
                 return '';
             } else {
                 return {

@@ -106,6 +106,9 @@ angular.module('xpassion.main', [
         $scope.isLoggedIn = function() {
             return AuthService.isAuthenticated();
         };
+	   $scope.canEdit = function () {
+		   return AuthService.isEditor();
+	   };
         $scope.logout = function() {
             $scope.infos.user = null;
             AuthService.logout();

@@ -65,7 +65,7 @@ angular.module('xpassion.issue', [])
         };
 
         $scope.filterIssuesAdmin = function(o) {
-            return o.published || $scope.isLoggedIn();
+            return o.published || $scope.canEdit();
         };
     }]
 )

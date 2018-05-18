@@ -22,8 +22,8 @@
     <div class="striked"><h3 class="text-center striked-text">Sommaire</h3></div>
 
     <div ng-repeat="item in issue.items | orderBy:'rank'">
-        <xpassion:article article="item.obj" admin="isLoggedIn()" ng-if="item.type == 'article'"></xpassion:article>
-        <xpassion:feature feature="item.obj" admin="isLoggedIn()" ng-if="item.type == 'feature'"></xpassion:feature>
+        <xpassion:article article="item.obj" admin="canEdit()" ng-if="item.type == 'article'"></xpassion:article>
+        <xpassion:feature feature="item.obj" admin="canEdit()" ng-if="item.type == 'feature'"></xpassion:feature>
         <hr ng-if="$index =! $last" />
     </div>
 </div>

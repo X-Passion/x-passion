@@ -51,7 +51,7 @@ angular.module('xpassion.news', [])
         };
 
         $scope.filterNewsAdmin = function(o) {
-            return !o.deleted || $scope.isLoggedIn();
+            return !o.deleted || $scope.canEdit();
         };
     }]
 )

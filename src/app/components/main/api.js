@@ -13,7 +13,7 @@ angular.module('xpassion.api', [
                 } else {
                     return 'api' + (path == '' ? '' : '/' + path);
                 }*/
-                return 'http://api.x-passion.binets.fr' + (path == '' ? '' : '/' + path);
+                return 'https://api.x-passion.binets.fr' + (path == '' ? '' : '/' + path);
             }
         };
     }

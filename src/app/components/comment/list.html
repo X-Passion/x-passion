@@ -9,7 +9,7 @@
 
     <h4>Messages des visiteurs</h4>
     <div ng-repeat="comment in comments | filter:filterDeleted() | orderBy:date:true">
-        <xpassion:comment comment="comment" admin="isLoggedIn()"></xpassion:comment>
+        <xpassion:comment comment="comment" admin="canEdit()"></xpassion:comment>
     </div>
 
     <br /><br />

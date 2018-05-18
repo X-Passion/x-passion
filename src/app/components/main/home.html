@@ -20,12 +20,13 @@
     <div class="row">
       <div class="striked"><h3 class="striked-text">Actualités</h3></div>
 
-      <a class="btn btn-success pull-right" ui-sref="index.news.add" ng-if="isLoggedIn()">Ajouter une actualité</a>
+      <a class="btn btn-success pull-right" ui-sref="index.news.add"
+					    ng-if="canEdit()">Ajouter une actualité</a>
       <br /><br />
 
       <div class="timeline">
           <dl>
-            <xpassion:news news="news" admin="isLoggedIn()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
+            <xpassion:news news="news" admin="canEdit()" index="$index" ng-repeat="news in news_list | filter:filterNewsAdmin | orderBy:'date':true | limitTo:p.limit:p.offset"></xpassion:news>
           </dl>
       </div>
     </div>
