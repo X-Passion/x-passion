@@ -63,4 +63,11 @@ angular.module('xpassion.api', [
         }, {stripTrailingSlashes: false});
     }]
 )
+
+.factory('Survey', ['API', '$resource',
+	function(API, $resource) {
+		return $resource(API.route('survey/current'), {}, {
+		}, {stripTrailingSlashes: false});
+	}]
+)
 ;

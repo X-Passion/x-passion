@@ -18,22 +18,25 @@ angular.module('xpassion', [
     'xpassion.comment',
     'xpassion.news',
     'xpassion.issue',
+	'xpassion.survey',
 ])
 
-.factory('http.request.interceptor',
-    ['$q', '$location',
-    function ($q, $location) {
-        return {
-            'responseError': function(rejection) {
-                // do something on error
-                if(rejection.status === 404){
-                    $location.path('/404');
-                }
-                return $q.reject(rejection);
-             }
-         };
-    }]
-)
+// delete notification : we do *not* want to be unconditionnally
+// redirected to 404 if an XHR fails.
+//.factory('http.request.interceptor',
+//    ['$q', '$location',
+//    function ($q, $location) {
+//        return {
+//            'responseError': function(rejection) {
+//                // do something on error
+//                if(rejection.status === 404){
+//                    $location.path('/404');
+//                }
+//                return $q.reject(rejection);
+//             }
+//         };
+//    }]
+//)
 
 .config(['$urlRouterProvider',
     function($urlRouterProvider) {
@@ -44,7 +47,7 @@ angular.module('xpassion', [
 .config(['$httpProvider',
     function ($httpProvider) {
         $httpProvider.interceptors.push('auth.interceptor');
-        $httpProvider.interceptors.push('http.request.interceptor');
+//        $httpProvider.interceptors.push('http.request.interceptor');
     }]
 )
 

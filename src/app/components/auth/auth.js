@@ -11,23 +11,28 @@ angular.module('xpassion.auth', [
 				$localStorage.auth = {
 					token: null,
 					user: null,
-					groups: null
+					groups: null,
+					done: false,
 				};
 			}
-			document.domain = document.domain;
-			var api_frame = document.createElement('iframe');
-			api_frame.setAttribute('style', 'display: none;');
-			api_frame.setAttribute('src', API.route('assets/static/jwt_retriever.html'));
-			document.body.append(api_frame);
-			api_frame.onload = function() {
-				var jwt = api_frame.contentWindow.localStorage.getItem('jwt');
-				if(jwt != null) {
-					$localStorage.auth.token = jwt;
-					$localStorage.auth.user = 'cas_user';
-					$localStorage.auth.groups = [];
-					api_frame.contentWindow.localStorage.removeItem('jwt');
+			var readyPromise = $q(function(resolve, reject) {
+				// TODO : should not use native js to load frame
+				document.domain = document.domain;
+				var api_frame = document.createElement('iframe');
+				api_frame.setAttribute('style', 'display: none;');
+				api_frame.setAttribute('src', API.route('assets/static/jwt_retriever.html'));
+				document.body.append(api_frame);
+				api_frame.onload = function() {
+					var jwt = api_frame.contentWindow.localStorage.getItem('jwt');
+					if(jwt != null) {
+						$localStorage.auth.token = jwt;
+						$localStorage.auth.user = 'cas_user';
+						$localStorage.auth.groups = [];
+						api_frame.contentWindow.localStorage.removeItem('jwt');
+					}
+					resolve();
 				}
-			}
+			});
 
 			return {
 				login: function(credentials, resultLogin) {
@@ -60,6 +65,9 @@ angular.module('xpassion.auth', [
 				},
 				getUser: function() {
 					return $localStorage.auth.user;
+				},
+				ready: function() {
+					return readyPromise;
 				}
 			};
 		}

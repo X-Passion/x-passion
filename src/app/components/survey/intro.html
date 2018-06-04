@@ -1,0 +1,24 @@
+<div>
+	<h2 class="text-center">Sondage X&#8209;Passion</h2>
+	<div ng-if="surveyStatus === 401" class="text-center">
+		<p>L'accès au sondage est restreint.</p>
+		<a ng-href="{{frankizUrl}}" class="btn btn-success">
+			Authentification Frankiz
+		</a>
+	</div>
+	<div ng-if="surveyStatus === 403" class="text-center">
+		<p>Vous n'avez pas accès à ce sondage.</p>
+	</div>
+	<div ng-if="surveyStatus === 404" class="text-center">
+		<p>Aucun sondage n'est ouvert en ce moment.</p>
+	</div>
+	<div ng-if="surveyStatus === 200">
+		<p>Bienvenue blabla RGPD blabla</p>
+		<div class="text-center"><a ng-href="" class="btn btn-success" class="text-center">
+				Accéder au sondage
+			</a></div>
+	</div>
+	<div ng-if="surveyStatus === 0" class="text-center">
+		<p>Authentification et chargement en cours...</p>
+	</div>
+</div>
