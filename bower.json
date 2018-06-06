@@ -18,7 +18,8 @@
     "html5-boilerplate": "~4.3.0",
     "ngstorage": "*",
     "angular-file-upload": "~1.1.x",
-    "Bootflat": "2.0.4"
+    "Bootflat": "2.0.4",
+    "angular-schema-form-bootstrap": "~0.2.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4"

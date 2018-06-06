@@ -1,0 +1,10 @@
+<p>Page {{ pageNr+1 }} sur {{ survey.page_set.length }}</p>
+<form name="formElem" ng-submit="submit(formElem)">
+	<div sf-schema="activePage.schema" sf-form="activePage.form" sf-model="activePage.model"></div>
+	<button type="button" class="btn" ng-click="previous()">
+		Précédent
+	</button>
+	<button type="submit" class="btn btn-success">
+		Suivant
+	</button>
+</form>

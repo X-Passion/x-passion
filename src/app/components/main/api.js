@@ -13,7 +13,7 @@ angular.module('xpassion.api', [
                 } else {
                     return 'api' + (path == '' ? '' : '/' + path);
                 }*/
-                return 'https://api.x-passion.binets.fr' + (path == '' ? '' : '/' + path);
+                return 'https://api.x-passion.binets.fr' + (path ? '/' + path : '');
             }
         };
     }
@@ -67,6 +67,29 @@ angular.module('xpassion.api', [
 .factory('Survey', ['API', '$resource',
 	function(API, $resource) {
 		return $resource(API.route('survey/current'), {}, {
+		}, {stripTrailingSlashes: false});
+	}]
+)
+
+.factory('SurveyPage', ['API', '$resource', '$http',
+	function(API, $resource, $http) {
+		return $resource(API.route('page_form/:id/'), {id: '@id'}, {
+			get: {method: 'GET', transformResponse: []
+				.concat($http.defaults.transformResponse)
+				.concat(function(value) {
+					return {
+						schema: value,
+						form:  ["*"],
+						model: {}
+					};
+				})
+			},
+			answer: {method: 'POST', url: API.route('page_form/:id/answer/'), transformRequest : []
+				.concat(function(value) {
+					return value.model;
+				})
+				.concat($http.defaults.transformRequest)
+			}
 		}, {stripTrailingSlashes: false});
 	}]
 )
